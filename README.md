@@ -2,8 +2,6 @@
 
 A modern, full-featured Inventory Management System built with React, TypeScript, and Tailwind CSS. This application provides comprehensive tools for managing inventory items, tracking stock levels, managing suppliers and categories, and visualizing data through interactive dashboards.
 
-![Dashboard Preview](./screenshots/dashboard.png)
-
 ## 🚀 Features
 
 ### 📊 Dashboard
