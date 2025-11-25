@@ -62,5 +62,24 @@ A modern, full-featured Inventory Management System built with React, TypeScript
 
 ## 🔧 Installation
 
-1. **Clone the repository** =
+1. **Clone the repository** = https://github.com/TanmoySin/InventoryManagementSystem.git (then move inside the project Folder)
 2. **Install dependencies** = npm install
+3. **Start the development server** = npm run dev
+4. **Open your browser** Navigate to `http://localhost:5173`
+
+## 👤 Demo Credentials
+
+The application includes three demo users with different access levels:
+
+| Username | Password | Role | Department |
+|----------|----------|------|------------|
+| Admin | 12345 | Super Admin | Administration |
+| manager_sarah | sarah@2025 | Manager | Warehouse Management |
+| emp_rajesh | rajesh123 | Employee | Inventory Operations |
+
+
+---
+
+**Note**: This is a demo project with dummy data. For production use, connect to a real backend API and implement proper security measures.
+
+Made with ❤️
