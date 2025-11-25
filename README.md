@@ -24,24 +24,6 @@ A modern, full-featured Inventory Management System built with React, TypeScript
 - Real-time stock status indicators
 - Export functionality (planned)
 
-### 🔐 Authentication
-- User login with role-based access
-- Redux-based state management with persistence
-- Protected routes
-- Three user roles: Super Admin, Manager, Employee
-- Session management across page refreshes
-
-### 🎨 UI/UX Features
-- Responsive design (Mobile, Tablet, Desktop)
-- Expandable/Collapsible sidebar navigation
-- Notification system with alerts
-- Quick action buttons
-- Help/Support menu
-- User profile dropdown
-- Custom 404 page
-- Modern gradient designs
-- Smooth animations and transitions
-
 ## 🛠️ Tech Stack
 
 - **Frontend Framework**: React 18+ with TypeScript
