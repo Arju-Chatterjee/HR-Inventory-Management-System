@@ -2,11 +2,11 @@ import { type FC } from "react";
 import { Link, useLocation } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import WarehouseIcon from '@mui/icons-material/Warehouse';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+// import WarehouseIcon from '@mui/icons-material/Warehouse';
+// import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import PeopleIcon from '@mui/icons-material/People';
+// import PeopleIcon from '@mui/icons-material/People';
 
 interface SidebarProps {
     isExpanded: boolean;
@@ -22,10 +22,10 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
     { name: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
     { name: 'Inventory', path: '/inventory', icon: <InventoryIcon /> },
-    { name: 'Warehouse', path: '/warehouse', icon: <WarehouseIcon /> },
+    // { name: 'Warehouse', path: '/warehouse', icon: <WarehouseIcon /> },
     { name: 'Stock Tracking', path: '/stock-tracking', icon: <TrendingUpIcon /> },
-    { name: 'Reports', path: '/reports', icon: <AssessmentIcon /> },
-    { name: 'Users', path: '/users', icon: <PeopleIcon /> },
+    // { name: 'Reports', path: '/reports', icon: <AssessmentIcon /> },
+    // { name: 'Users', path: '/users', icon: <PeopleIcon /> },
     { name: 'Settings', path: '/settings', icon: <SettingsIcon /> },
 ];
 
