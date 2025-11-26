@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Dummy HR - Inventory Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-featured Inventory Management System built with React, TypeScript, and Tailwind CSS. This application provides comprehensive tools for managing inventory items, tracking stock levels, managing suppliers and categories, and visualizing data through interactive dashboards.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📊 Dashboard
+- Real-time inventory overview with key metrics
+- Interactive charts (Area, Pie, Line, Bar charts)
+- Stock level trends visualization
+- Revenue vs Cost analysis
+- Inventory turnover rate tracking
+- Top selling products display
+- Warehouse capacity monitoring
+- Key Performance Indicators (KPIs)
 
-## React Compiler
+### 📦 Inventory Management
+- **All Items**: Complete CRUD operations for inventory items
+- **Categories**: Manage product categories
+- **Suppliers**: Supplier information management
+- **Low Stock Alerts**: Monitor items requiring attention
+- Advanced search and filtering
+- Table and Grid view modes
+- Real-time stock status indicators
+- Export functionality (planned)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend Framework**: React 18+ with TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Redux Toolkit with Redux Persist
+- **Routing**: React Router DOM v6
+- **Charts**: Recharts
+- **Icons**: Heroicons (SVG)
+- **Build Tool**: Vite
+- **Package Manager**: npm/yarn
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📋 Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v16 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🔧 Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clone the repository** = https://github.com/TanmoySin/InventoryManagementSystem.git (then move inside the project Folder)
+2. **Install dependencies** = npm install
+3. **Start the development server** = npm run dev
+4. **Open your browser** Navigate to `http://localhost:5173`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 👤 Demo Credentials
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The application includes three demo users with different access levels:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Username | Password | Role | Department |
+|----------|----------|------|------------|
+| Admin | 12345 | Super Admin | Administration |
+| manager_sarah | sarah@2025 | Manager | Warehouse Management |
+| emp_rajesh | rajesh123 | Employee | Inventory Operations |
+
+
+---
+
+**Note**: This is a demo project with dummy data. For production use, connect to a real backend API and implement proper security measures.
+
+Made with ❤️
