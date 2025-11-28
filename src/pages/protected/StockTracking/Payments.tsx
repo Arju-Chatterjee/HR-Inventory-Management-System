@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { customerOrders, type CustomerOrder } from '../../../data/stockTrackingData';
 import OrderDetailsModal from './components/OrderDetailsModal';
+import type { CardConfig, TableColumn } from '../../../components/dynamicComponents/CommonTable';
+import CommonTable from '../../../components/dynamicComponents/CommonTable';
 
 const Payments = () => {
     const [filterStatus, setFilterStatus] = useState('All');
@@ -48,6 +50,143 @@ const Payments = () => {
             default:
                 return '💰';
         }
+    };
+
+    // Table columns configuration
+    const columns: TableColumn<CustomerOrder>[] = [
+        {
+            header: 'Order #',
+            accessor: 'orderNumber',
+            cell: (value, row) => (
+                <div>
+                    <p className="font-medium text-gray-800">{value}</p>
+                    <p className="text-xs text-gray-500">{row.orderDate}</p>
+                </div>
+            ),
+        },
+        {
+            header: 'Customer',
+            accessor: 'customer',
+            cell: (value) => (
+                <div>
+                    <p className="font-medium text-gray-800">{value.name}</p>
+                    <p className="text-xs text-gray-500">{value.phone}</p>
+                </div>
+            ),
+        },
+        {
+            header: 'Payment Method',
+            accessor: 'payment',
+            cell: (value) => (
+                <div className="flex items-center gap-2">
+                    <span className="text-xl">{getPaymentMethodIcon(value.paymentMethod)}</span>
+                    <span className="text-sm text-gray-800">{value.paymentMethod}</span>
+                </div>
+            ),
+        },
+        {
+            header: 'Total Amount',
+            accessor: 'payment',
+            align: 'right',
+            cell: (value) => (
+                <span className="font-medium text-gray-800">₹{value.totalAmount.toLocaleString()}</span>
+            ),
+        },
+        {
+            header: 'Paid Amount',
+            accessor: 'payment',
+            align: 'right',
+            cell: (value) => (
+                <span className="font-bold text-green-600">₹{value.paidAmount.toLocaleString()}</span>
+            ),
+        },
+        {
+            header: 'Due Amount',
+            accessor: 'payment',
+            align: 'right',
+            cell: (value) => (
+                <span className="font-bold text-red-600">₹{value.dueAmount.toLocaleString()}</span>
+            ),
+        },
+        {
+            header: 'Status',
+            accessor: 'payment',
+            cell: (value) => (
+                <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPaymentStatusStyle(value.paymentStatus)}`}>
+                    {value.paymentStatus}
+                </span>
+            ),
+        },
+        {
+            header: 'Transaction ID',
+            accessor: 'payment',
+            cell: (value) => (
+                <span className="text-sm text-gray-600">{value.transactionId || 'N/A'}</span>
+            ),
+        },
+        {
+            header: 'Actions',
+            accessor: 'orderId' as keyof CustomerOrder,
+            cell: (_, row) => (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedOrder(row);
+                    }}
+                    className="text-indigo-600 hover:text-indigo-700 font-medium text-sm"
+                >
+                    View Order
+                </button>
+            ),
+        },
+    ];
+
+    // Card configuration for grid view
+    const cardConfig: CardConfig<CustomerOrder> = {
+        title: (row) => row.orderNumber,
+        subtitle: (row) => row.customer.name,
+        content: (row) => (
+            <div className="space-y-2">
+                <div className="flex items-center gap-2 text-sm">
+                    <span className="text-xl">{getPaymentMethodIcon(row.payment.paymentMethod)}</span>
+                    <span className="text-gray-800">{row.payment.paymentMethod}</span>
+                </div>
+                <div className="flex justify-between text-sm pt-2 border-t border-gray-200">
+                    <span className="text-gray-600">Total Amount:</span>
+                    <span className="font-medium text-gray-800">₹{row.payment.totalAmount.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Paid Amount:</span>
+                    <span className="font-bold text-green-600">₹{row.payment.paidAmount.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Due Amount:</span>
+                    <span className="font-bold text-red-600">₹{row.payment.dueAmount.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm items-center pt-2 border-t border-gray-200">
+                    <span className="text-gray-600">Status:</span>
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPaymentStatusStyle(row.payment.paymentStatus)}`}>
+                        {row.payment.paymentStatus}
+                    </span>
+                </div>
+                {row.payment.transactionId && (
+                    <div className="text-xs text-gray-500 pt-2">
+                        Transaction ID: {row.payment.transactionId}
+                    </div>
+                )}
+            </div>
+        ),
+        actions: (row) => (
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedOrder(row);
+                }}
+                className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium"
+            >
+                View Order Details
+            </button>
+        ),
     };
 
     return (
@@ -112,71 +251,21 @@ const Payments = () => {
                 </select>
             </div>
 
-            {/* Payments Table */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-gray-50 border-b border-gray-200">
-                            <tr>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Order #</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Customer</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Payment Method</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Total Amount</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Paid Amount</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Due Amount</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Transaction ID</th>
-                                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {filteredOrders.map((order) => (
-                                <tr key={order.orderId} className="hover:bg-gray-50 transition-colors">
-                                    <td className="px-4 py-3">
-                                        <p className="font-medium text-gray-800">{order.orderNumber}</p>
-                                        <p className="text-xs text-gray-500">{order.orderDate}</p>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <p className="font-medium text-gray-800">{order.customer.name}</p>
-                                        <p className="text-xs text-gray-500">{order.customer.phone}</p>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-xl">{getPaymentMethodIcon(order.payment.paymentMethod)}</span>
-                                            <span className="text-sm text-gray-800">{order.payment.paymentMethod}</span>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3 font-medium text-gray-800">
-                                        ₹{order.payment.totalAmount.toLocaleString()}
-                                    </td>
-                                    <td className="px-4 py-3 font-bold text-green-600">
-                                        ₹{order.payment.paidAmount.toLocaleString()}
-                                    </td>
-                                    <td className="px-4 py-3 font-bold text-red-600">
-                                        ₹{order.payment.dueAmount.toLocaleString()}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPaymentStatusStyle(order.payment.paymentStatus)}`}>
-                                            {order.payment.paymentStatus}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-gray-600">
-                                        {order.payment.transactionId || 'N/A'}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <button
-                                            onClick={() => setSelectedOrder(order)}
-                                            className="text-indigo-600 hover:text-indigo-700 font-medium text-sm"
-                                        >
-                                            View Order
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            {/* CommonTable with List/Grid View */}
+            <CommonTable
+                columns={columns}
+                data={filteredOrders}
+                cardConfig={cardConfig}
+                onRowClick={(order) => setSelectedOrder(order)}
+                showViewToggle={true}
+                defaultView="table"
+                showPagination={true}
+                defaultRowsPerPage={10}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                striped
+                hoverable
+                emptyMessage="No payment records found"
+            />
 
             {/* Recent Transactions */}
             <div className="bg-white rounded-lg border border-gray-200 p-5">
@@ -187,7 +276,8 @@ const Payments = () => {
                         .sort((a, b) => new Date(b.payment.paymentDate!).getTime() - new Date(a.payment.paymentDate!).getTime())
                         .slice(0, 5)
                         .map(order => (
-                            <div key={order.orderId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div key={order.orderId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                                onClick={() => setSelectedOrder(order)}>
                                 <div className="flex items-center gap-3">
                                     <div className="bg-green-100 text-green-600 w-10 h-10 rounded-full flex items-center justify-center">
                                         ✓
