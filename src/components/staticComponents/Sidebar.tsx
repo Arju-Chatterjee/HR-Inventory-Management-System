@@ -43,11 +43,11 @@ const Sidebar: FC<SidebarProps> = ({ isExpanded, onToggleSidebar }) => {
             <div className={`h-16 flex items-center justify-between border-b border-gray-200 ${isExpanded ? 'px-4' : 'px-3'}`}>
                 <div className="flex items-center gap-3">
                     <div className="bg-indigo-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg flex-shrink-0">
-                        DH
+                        TS
                     </div>
                     {isExpanded && (
                         <div className="overflow-hidden">
-                            <h1 className="text-sm font-bold text-gray-800 whitespace-nowrap">Dummy HR</h1>
+                            <h1 className="text-sm font-bold text-gray-800 whitespace-nowrap">My Company</h1>
                             <p className="text-xs text-gray-500 -mt-0.5 whitespace-nowrap">Inventory Management System</p>
                         </div>
                     )}

@@ -36,7 +36,7 @@ const LoginPage = () => {
     <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
       {/* Mobile Logo - Only visible on small screens */}
       <div className="lg:hidden text-center mb-6">
-        <h2 className="text-3xl font-bold text-indigo-600">Dummy HR</h2>
+        <h2 className="text-3xl font-bold text-indigo-600">My Company</h2>
         <p className="text-gray-500 text-sm mt-1">Inventory Management</p>
       </div>
 

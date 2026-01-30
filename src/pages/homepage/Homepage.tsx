@@ -7,7 +7,7 @@ const Homepage = () => {
             {/* Left Section - Company Branding & Features */}
             <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 to-blue-700 text-white flex-col justify-between p-12">
                 <div>
-                    <h1 className="text-5xl font-bold mb-2">Dummy HR</h1>
+                    <h1 className="text-5xl font-bold mb-2">My Company</h1>
                     <p className="text-xl text-indigo-200">Solar Inventory Management System</p>
                 </div>
 
@@ -50,7 +50,7 @@ const Homepage = () => {
                 </div>
 
                 <div className="text-indigo-200 text-sm">
-                    © 2025 Dummy HR - Empowering Sustainable Energy. All rights reserved.
+                    © 2025 My Company - Empowering Sustainable Energy. All rights reserved.
                 </div>
             </div>
 

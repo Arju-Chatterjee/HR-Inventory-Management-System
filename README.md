@@ -1,4 +1,4 @@
-# Dummy HR - Inventory Management System
+# My Company - Inventory Management System
 
 A modern, full-featured Inventory Management System built with React, TypeScript, and Tailwind CSS. This application provides comprehensive tools for managing inventory items, tracking stock levels, managing suppliers and categories, and visualizing data through interactive dashboards.
 
@@ -61,5 +61,7 @@ The application includes three demo users with different access levels:
 ---
 
 **Note**: This is a demo project with dummy data. For production use, connect to a real backend API and implement proper security measures.
+
+**Note**: Backend code is Private so This is only the Frontend With Hardcoded Data
 
 Made with ❤️
