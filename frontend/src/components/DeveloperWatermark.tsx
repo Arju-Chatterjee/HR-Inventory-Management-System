@@ -19,7 +19,7 @@ const DeveloperWatermark = () => {
                         <div className="flex items-center gap-1.5">
                             <span className="text-xs font-medium text-gray-700/70">Developed by</span>
                             <span className="text-sm font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                                Tanmoy with ♥️
+                                Arju with ♥️
                             </span>
                         </div>
                     </div>
