@@ -64,9 +64,14 @@ const Navbar = ({ sidebarToggled }: NavbarProps) => {
     }
   };
 
-  const getInitials = (fullName: string) => {
-    const names = fullName.split(' ');
-    return names.map(name => name[0]).join('').toUpperCase().slice(0, 2);
+  const getInitials = (name?: string) => {
+    if (!name) return "U";
+    return name
+      .split(" ")
+      .map(n => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   // Dummy notifications data
